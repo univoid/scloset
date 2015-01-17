@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <title>Scloset</title>
+        <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="/javascripts/angularApp.js"></script>
+        <style> .glyphicon-thumbs-up { cursor:pointer }</style>
+    </head>
+    <body ng-app="scloset" ng-controller="MainCtrl">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div ui-view></div>
+
+                <div ng-repeat="item in items | orderBy: 'name'">
+                    <span>
+                        {{item.name}}
+                    </span>
+                    <span>
+                        {{item.warmth}}
+                    </span>
+                    <span>
+                        {{item.pattern}}
+                    </span>
+                    <span>
+                        {{item.r}}
+                    </span>
+                    <span>
+                        {{item.g}}
+                    </span>
+                    <span>
+                        {{item.b}}
+                    </span>
+               </div> 
+
+                <form ng-submit="addItem()"
+                    style="margin-top:30px;">
+                    <h3>Add a new Item</h3>
+                    <div class="form-group">
+                        <label>name:</label>
+                        <input type="text" placeholder="Name" ng-model="name"></input>
+                    </div>
+                    <div class="form-group">
+                        <label>warmth:</label>
+                        <select ng-model="warmth">
+                            <option value="spring">Spring</option>
+                            <option value="summer">Summer</option>
+                            <option value="Autumn">Autumn</option>
+                            <option value="winter">Winter</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>pattern:</label>
+                        <select ng-model="pattern">
+                            <option value="office">Office</option>
+                            <option value="casual">Casual</option>
+                            <option value="sport">Sport</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" placeholder="R" ng-model="r"></input>
+                        <input type="number" placeholder="G" ng-model="g"></input>
+                        <input type="number" placeholder="B" ng-model="b"></input>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Post</button>
+                </form>
+            </div>
+        </div>
+    </body>
+
+    <script type="text/ng-template" id="/home.html">
+        <div class="page-header">
+            <h1>Welcome here!</h1>
+        </div>
+    </script>
+
+
+</html>
