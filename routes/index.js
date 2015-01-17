@@ -8,8 +8,7 @@ router.get('/', function(req, res) {
 
 var mongoose = require('mongoose');
 var Item = mongoose.model('Item');
-var Color = mongoose.model('Color');
-
+// var Color = mongoose.model('Color');
 router.get('/allItems', function(req, res, next) {
     Item.find(function(err, items){
         if(err){ return next(err); }

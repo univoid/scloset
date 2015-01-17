@@ -11,67 +11,114 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div ui-view></div>
-
-                <div ng-repeat="item in items | orderBy: 'name'">
-                    <span>
-                        {{item.name}}
-                    </span>
-                    <span>
-                        {{item.warmth}}
-                    </span>
-                    <span>
-                        {{item.pattern}}
-                    </span>
-                    <span>
-                        {{item.r}}
-                    </span>
-                    <span>
-                        {{item.g}}
-                    </span>
-                    <span>
-                        {{item.b}}
-                    </span>
-               </div> 
-
-                <form ng-submit="addItem()"
-                    style="margin-top:30px;">
-                    <h3>Add a new Item</h3>
-                    <div class="form-group">
-                        <label>name:</label>
-                        <input type="text" placeholder="Name" ng-model="name"></input>
-                    </div>
-                    <div class="form-group">
-                        <label>warmth:</label>
-                        <select ng-model="warmth">
-                            <option value="spring">Spring</option>
-                            <option value="summer">Summer</option>
-                            <option value="Autumn">Autumn</option>
-                            <option value="winter">Winter</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>pattern:</label>
-                        <select ng-model="pattern">
-                            <option value="office">Office</option>
-                            <option value="casual">Casual</option>
-                            <option value="sport">Sport</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <input type="number" placeholder="R" ng-model="r"></input>
-                        <input type="number" placeholder="G" ng-model="g"></input>
-                        <input type="number" placeholder="B" ng-model="b"></input>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Post</button>
-                </form>
             </div>
         </div>
     </body>
-
     <script type="text/ng-template" id="/home.html">
+        <a href="#/filter">filter</a>
+        <a href="#/items">items</a>
+    </script>
+
+    <script type="text/ng-template" id="/filter.html">
+         <form ng-submit="filterItem()"
+            style="margin-top:30px;">
+            <h2>Input Optons</h2>
+            <div class="form-group">
+                <label>degree:</label>
+                <input type="number" placeholder="Degree" ng-model="degree"></input>
+            </div>
+            <div class="form-group">
+                <label>weather:</label>
+                <select ng-model="weather">
+                    <option value="sun">Sun</option>
+                    <option value="cloud">Cloud</option>
+                    <option value="rain">Rain</option>
+                    <option value="Snow">Snow</option>
+                </select>
+            </div>
+             <div class="form-group">
+                <label>feeling:</label>
+                <select ng-model="feeling">
+                    <option value="happy">Happy</option>
+                    <option value="sad">Sad</option>
+                    <option value="angry">Angry</option>
+                    <option value="nothing">Nothing</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>aim:</label>
+                <select ng-model="aim">
+                    <option value="school">School</option>
+                    <option value="office">Office</option>
+                    <option value="home">Home</option>
+                    <option value="shopping">Shopping</option>
+                    <option value="hiking">Hiking</option>
+                    <option value="sport">sport</option>
+                </select>
+            </div>
+           <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </script>
+
+    <script type="text/ng-template" id="/items.html">
         <div class="page-header">
-            <h1>Welcome here!</h1>
+            <h1>Items List</h1>
         </div>
+
+        <div ng-repeat="item in items | orderBy: 'name'">
+            <span>
+                {{item.name}}
+            </span>
+            <span>
+                {{item.warmth}}
+            </span>
+            <span>
+                {{item.pattern}}
+            </span>
+            <span>
+                {{item.r}}
+            </span>
+            <span>
+                {{item.g}}
+            </span>
+            <span>
+                {{item.b}}
+            </span>
+       </div> 
+
+        <form ng-submit="addItem()"
+            style="margin-top:30px;">
+            <h3>Add a new Item</h3>
+            <div class="form-group">
+                <label>name:</label>
+                <input type="text" placeholder="Name" ng-model="name"></input>
+            </div>
+            <div class="form-group">
+                <label>warmth:</label>
+                <select ng-model="warmth">
+                    <option value="spring">Spring</option>
+                    <option value="summer">Summer</option>
+                    <option value="Autumn">Autumn</option>
+                    <option value="winter">Winter</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>pattern:</label>
+                <select ng-model="pattern">
+                    <option value="office">Office</option>
+                    <option value="casual">Casual</option>
+                    <option value="sport">Sport</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="number" placeholder="R" ng-model="r"></input>
+                <input type="number" placeholder="G" ng-model="g"></input>
+                <input type="number" placeholder="B" ng-model="b"></input>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
     </script>
 
 

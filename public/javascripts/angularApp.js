@@ -9,11 +9,21 @@ function($stateProvider, $urlRouterProvider) {
             url: '/home',
             templateUrl: '/home.html',
             controller: 'MainCtrl',
+        })
+        .state('items', {
+            url: '/items',
+            templateUrl: '/items.html',
+            controller: 'MainCtrl',
             resolve: {
                 postPromise: ['items', function(items){
                     return items.getAll();
                 }]
-        }
+            }
+        })
+        .state('filter', {
+            url: '/filter',
+            templateUrl: '/filter.html',
+            controller: 'FilterCtrl',
         });
     $urlRouterProvider.otherwise('home');
 }])
@@ -57,8 +67,19 @@ function($scope, items){
         $scope.name = '';
         $scope.warmth = '';
         $scope.pattern = '';
-        $scope.color = null;
+        $scope.r = null;
+        $scope.g = null;
+        $scope.b = null;
     };
 }])
 
+.controller('FilterCtrl', [
+'$scope',
+'items',
+function($scope, items){
+    $scope.items = items.items;
+    $scope.filterItem = function(){
+        // if()
+    }
+}])
 
