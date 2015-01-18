@@ -9,21 +9,21 @@ function($stateProvider, $urlRouterProvider) {
             url: '/home',
             templateUrl: '/home.html',
             controller: 'MainCtrl',
-        })
-        .state('items', {
-            url: '/items',
-            templateUrl: '/items.html',
-            controller: 'MainCtrl',
             resolve: {
                 postPromise: ['items', function(items){
                     return items.getAll();
                 }]
             }
         })
+        .state('items', {
+            url: '/items',
+            templateUrl: '/items.html',
+            controller: 'MainCtrl',
+        })
         .state('filter', {
             url: '/filter',
             templateUrl: '/filter.html',
-            controller: 'FilterCtrl',
+            controller: 'MainCtrl',
         });
     $urlRouterProvider.otherwise('home');
 }])
@@ -74,15 +74,9 @@ function($scope, items){
         $scope.g = null;
         $scope.b = null;
     };
-}])
-
-.controller('FilterCtrl', [
-'$scope',
-'items',
-function($scope, items){
-    $scope.items = items.items;
     $scope.filterItem = function(){
         items.filter($scope.degree, $scope.weather, $scope.feeling, $scope.aim);
-    }
+    };
 }])
+
 

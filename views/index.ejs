@@ -5,31 +5,73 @@
         <script src="bower_components/angular/angular.min.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
         <script src="/javascripts/angularApp.js"></script>
-        <style> .glyphicon-thumbs-up { cursor:pointer }</style>
     </head>
     <body ng-app="scloset" ng-controller="MainCtrl">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" ><a href="#/home">Home</a></li>
+                    <li role="presentation" ><a href="#/items">Add Items</a></li>
+                    <li role="presentation" ><a href="#/filter">Filter</a></li>
+                </ul>
                 <div ui-view></div>
+                <div class="page-header text-center">
+                    <h3>Items List</h3>
+                </div>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <td>name</td>
+                            <td>warmth</td>
+                            <td>pattern</td>
+                            <td>r</td>
+                            <td>g</td>
+                            <td>b</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in items">
+                            <td>
+                                {{item.name}}
+                            </td>
+                            <td>
+                                {{item.warmth}}
+                            </td>
+                            <td>
+                                {{item.pattern}}
+                            </td>
+                            <td>
+                                {{item.r}}
+                            </td>
+                            <td>
+                                {{item.g}}
+                            </td>
+                            <td>
+                                {{item.b}}
+                            </td>
+                       </tr> 
+                    </tbody>
+                </table>
+
             </div>
         </div>
     </body>
+
     <script type="text/ng-template" id="/home.html">
-        <a href="#/filter">filter</a>
-        <a href="#/items">items</a>
+        <h1 class="text-center">Your Scloset <small>always here</small></h1>
     </script>
 
     <script type="text/ng-template" id="/filter.html">
-         <form ng-submit="filterItem()"
-            style="margin-top:30px;">
-            <h2>Input Optons</h2>
+         <form class="form-inline" role="form" ng-submit="filterItem()">
+            <h4>Input Options</h4>
             <div class="form-group">
-                <label>degree:</label>
-                <input type="number" placeholder="Degree" ng-model="degree"></input>
+                <label class="sr-only">degree:</label>
+                <input class="form-control col-md-2" type="number" placeholder="Degree" ng-model="degree"></input>
             </div>
             <div class="form-group">
-                <label>weather:</label>
-                <select ng-model="weather">
+                <label class="sr-only">weather:</label>
+                <select class="form-control col-md-2" ng-model="weather">
+                    <option value="">weather</option>
                     <option value="sun">Sun</option>
                     <option value="cloud">Cloud</option>
                     <option value="rain">Rain</option>
@@ -37,8 +79,9 @@
                 </select>
             </div>
              <div class="form-group">
-                <label>feeling:</label>
-                <select ng-model="feeling">
+                <label class="sr-only">feeling:</label>
+                <select class="form-control col-md-2" ng-model="feeling">
+                    <option value="">feeling</option>
                     <option value="happy">Happy</option>
                     <option value="sad">Sad</option>
                     <option value="angry">Angry</option>
@@ -46,8 +89,9 @@
                 </select>
             </div>
             <div class="form-group">
-                <label>aim:</label>
-                <select ng-model="aim">
+                <label class="sr-only">aim:</label>
+                <select class="form-control col-md-2" ng-model="aim">
+                    <option value="">aim</option>
                     <option value="school">School</option>
                     <option value="office">Office</option>
                     <option value="home">Home</option>
@@ -58,74 +102,43 @@
             </div>
            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-
     </script>
 
+
     <script type="text/ng-template" id="/items.html">
-        <div class="page-header">
-            <h1>Items List</h1>
-        </div>
-
-        <div ng-repeat="item in items | orderBy: 'name'">
-            <span>
-                {{item.name}}
-            </span>
-            <span>
-                {{item.warmth}}
-            </span>
-            <span>
-                {{item.pattern}}
-            </span>
-            <span>
-                {{item.r}}
-            </span>
-            <span>
-                {{item.g}}
-            </span>
-            <span>
-                {{item.b}}
-            </span>
-            <span>
-                {{item.x}}
-            </span>
-            <span>
-                {{item.y}}
-            </span>
-
-       </div> 
-
-        <form ng-submit="addItem()"
-            style="margin-top:30px;">
-            <h3>Add a new Item</h3>
+        <form class="form-inline" role="form" ng-submit="addItem()">
+            <h4>Add a new Item</h4>
             <div class="form-group">
-                <label>name:</label>
-                <input type="text" placeholder="Name" ng-model="name"></input>
+                <label class="sr-only">name:</label>
+                <input class="form-control col-md-2" type="text" placeholder="Name" ng-model="name"></input>
             </div>
             <div class="form-group">
-                <label>warmth:</label>
-                <select ng-model="warmth">
+                <label class="sr-only">warmth:</label>
+                <select class="form-control col-md-2" ng-model="warmth">
+                    <option value="">Warmth</option>
                     <option value="spring">Spring</option>
                     <option value="summer">Summer</option>
-                    <option value="Autumn">Autumn</option>
+                    <option value="autumn">Autumn</option>
                     <option value="winter">Winter</option>
                 </select>
             </div>
             <div class="form-group">
-                <label>pattern:</label>
-                <select ng-model="pattern">
-                    <option value="office">Office</option>
+                <label class="sr-only">pattern:</label>
+                <select class="form-control col-md-2" ng-model="pattern">
+                    <option value="">Pattern</option>
+                    <option value="business">Office</option>
                     <option value="casual">Casual</option>
                     <option value="sport">Sport</option>
                 </select>
             </div>
+            <button type="submit" class="btn btn-primary col-md-offset-2">Submit</button>
             <div class="form-group">
-                <input type="number" placeholder="R" ng-model="r"></input>
-                <input type="number" placeholder="G" ng-model="g"></input>
-                <input type="number" placeholder="B" ng-model="b"></input>
+                <label class="sr-only">Color</label>
+                <input class="form-control col-md-2" type="number" placeholder="R" ng-model="r"></input>
+                <input class="form-control col-md-2" type="number" placeholder="G" ng-model="g"></input>
+                <input class="form-control col-md-2" type="number" placeholder="B" ng-model="b"></input>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-
     </script>
 
 

@@ -31,7 +31,6 @@ router.get('/filter', function(req, res, next) {
         if(err){ return next(err); }
         // console.log(items);
         items = mainFiler(items, parseInt(req.query.degree), req.query.weather, req.query.feeling, req.query.aim)
-        console.log(items);
         res.json(items);
     });
 
@@ -49,7 +48,7 @@ var mainFiler = function(i, degree, weather, feeling, aim) {
         case !((-10 < degree && degree < 10)):
           return (_ref = item.warmth) === 'winter';
         case !((10 <= degree && degree < 25)):
-          return (_ref1 = item.warmth) === 'spring' || _ref1 === 'Autumn';
+          return (_ref1 = item.warmth) === 'spring' || _ref1 === 'autumn';
         case !((25 <= degree && degree < 40)):
           return (_ref2 = item.warmth) === 'summer';
       }
@@ -67,12 +66,12 @@ var mainFiler = function(i, degree, weather, feeling, aim) {
         case aim !== 'home':
           return (_ref3 = item.pattern) === 'casual';
         case aim !== 'school':
-          return (_ref4 = item.pattern) === 'office' || _ref4 === 'casual';
+          return (_ref4 = item.pattern) === 'business' || _ref4 === 'casual';
         case aim !== 'office':
-          return (_ref5 = item.pattern) === 'office';
+          return (_ref5 = item.pattern) === 'business';
       }
     });
-    console.log(items);
+
     for (_i = 0, _len = items.length; _i < _len; _i++) {
       item = items[_i];
       x = item.x;
