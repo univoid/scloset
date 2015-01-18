@@ -18,11 +18,10 @@ router.get('/allItems', function(req, res, next) {
 });
 
 router.post('/addItem', function(req, res, next) {
-    console.log(req.body);
     var item = new Item(req.body);
     item.save(function(err, item){
         if(err){ return next(err); }
-
+        item.calXY();
         res.json(item);
     });
 });
@@ -30,11 +29,14 @@ router.post('/addItem', function(req, res, next) {
 router.get('/filter', function(req, res, next) {
     console.log(req.query);
     Item.find(function(err, items){
-        if(err){ return next(err); }
+           if(err){ return next(err); }
+           console.log(items);
+	   //TODO
 
-        res.json(items);
-        next();
-    });
+
+           res.json(items);
+        });
+
 });
 
 module.exports = router;
