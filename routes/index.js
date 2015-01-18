@@ -14,8 +14,9 @@ router.get('/allItems', function(req, res, next) {
         if(err){ return next(err); }
 
         res.json(items);
-    })
+    });
 });
+
 router.post('/addItem', function(req, res, next) {
     console.log(req.body);
     var item = new Item(req.body);
@@ -26,20 +27,14 @@ router.post('/addItem', function(req, res, next) {
     });
 });
 
-// router.post('/filterItems', function(req, res, next) {
-//     var item = new Item(req.body);
-// })
+router.get('/filter', function(req, res, next) {
+    console.log(req.query);
+    Item.find(function(err, items){
+        if(err){ return next(err); }
 
-// router.param('post',function(req, res, next, id) {
-//     var query = Post.findById(id);
-
-//     query.exec(function (err, post){
-//         if (err) { return next(err);}
-//         if (!post) { return  next(new Error("can't find post")); }
-
-//         req.post = post;
-//         return next();
-//     });
-// });
+        res.json(items);
+        next();
+    });
+});
 
 module.exports = router;

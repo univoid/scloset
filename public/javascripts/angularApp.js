@@ -43,9 +43,12 @@ function($stateProvider, $urlRouterProvider) {
             o.items.push(data);
         });
     };
-    /* o.filter = function() { */
-    /*     return $http.post('/filter', ) */
-    /* } */
+    o.filter = function(degree, weather, feeling, aim) {
+        return $http.get('/filter',{params: {degree: degree, weather: weather, feeling: feeling, aim: aim}
+        }).success(function(data){
+            angular.copy(data, o.items);
+        });
+    };
     return o;
 }])
 
@@ -79,7 +82,7 @@ function($scope, items){
 function($scope, items){
     $scope.items = items.items;
     $scope.filterItem = function(){
-        // if()
+        items.filter($scope.degree, $scope.weather, $scope.feeling, $scope.aim);
     }
 }])
 
