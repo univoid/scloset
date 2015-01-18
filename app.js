@@ -65,6 +65,6 @@ module.exports = app;
 //new here
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/scloset');
+mongoose.connect('mongodb://localhost/demo');
 
 
